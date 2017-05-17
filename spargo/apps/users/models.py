@@ -52,6 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     mobile_number = models.CharField('Mobile Number', max_length=30, unique=True,
                                      null=True, db_index=True, blank=True,
                                      validators=[validate_mobile_phone])
+    push_notification_key = models.CharField(blank=True, default='', max_length=254)
     gcm_key = models.CharField(blank=True, default='', max_length=254)
     is_staff = models.BooleanField('staff status', default=False)
     is_active = models.BooleanField('active', default=True)
