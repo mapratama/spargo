@@ -18,6 +18,8 @@ SETTINGS_DIR = os.path.dirname(__file__)
 PROJECT_ROOT = os.path.dirname(SETTINGS_DIR)
 PROJECT_NAME = os.path.basename(PROJECT_ROOT)
 
+STATIC_ROOT = SETTINGS_DIR + '/static/'
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = path.join(PROJECT_ROOT, 'media')

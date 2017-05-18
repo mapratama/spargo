@@ -49,7 +49,7 @@ def serialize_j_and_t(j_and_t):
 
 
 def serialize_bank(bank):
-    photo_url = settings.HOST + bank.photo.thumbnails.get('size_600x300').url \
+    photo_url = settings.HOST + bank.photo.thumbnails.get('size_400').url \
         if bank.photo else None
 
     return {
