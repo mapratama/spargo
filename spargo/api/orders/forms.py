@@ -158,8 +158,8 @@ class PaymentCheckedForm(forms.Form):
         payment.correction_by = user
         payment.save(update_fields=['status', 'correction_by'])
 
-        if status == Payment.STATUS.approved:
-            order = payment.order
+        order = payment.order
+        if status == Payment.STATUS.accepted:
             order.status = Order.STATUS.payment_approved
             order.save(update_fields=['status'])
 

@@ -88,7 +88,7 @@ def send_new_payment_notification(order):
 
 def send_payment_checked_notification(payment):
     order = payment.order
-    if payment.status == Payment.STATUS.approved:
+    if payment.status == Payment.STATUS.accepted:
         title = 'Pembayaran disetujui'
         body = ('Pembayaran untuk pesanan %s telah diterima, '
                 'Terima kasih telah berbelanja di SPARGO') % order.invoice_number

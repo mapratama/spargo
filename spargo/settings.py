@@ -40,6 +40,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+HOST = 'http://173.255.218.177'
 ALLOWED_HOSTS = ['*']
 
 
@@ -123,6 +124,13 @@ THUMBNAILS = {
             'PROCESSORS': [
                 {'PATH': 'thumbnails.processors.resize', 'width': 600, 'height': 300, 'method': 'fill'},
                 {'PATH': 'thumbnails.processors.crop', 'width': 600, 'height': 300},
+            ],
+            'POST_PROCESSORS': STANDARD_POST_PROCESSORS
+        },
+        'size_400x600': {
+            'PROCESSORS': [
+                {'PATH': 'thumbnails.processors.resize', 'width': 400, 'height': 600, 'method': 'fill'},
+                {'PATH': 'thumbnails.processors.crop', 'width': 400, 'height': 600},
             ],
             'POST_PROCESSORS': STANDARD_POST_PROCESSORS
         },

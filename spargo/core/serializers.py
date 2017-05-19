@@ -32,9 +32,9 @@ def serialize_jne(jne):
         'region': jne.region,
         'regular_cost': jne.regular_cost,
         'regular_estimated': jne.regular_estimated if jne.regular_estimated else 0,
-        'oke_cost': jne.oke_cost if jne.regular_estimated else 0,
+        'oke_cost': jne.oke_cost if jne.oke_cost else 0,
         'oke_estimated': jne.oke_estimated if jne.oke_estimated else 0,
-        'yes_cost': jne.yes_cost if jne.yes_estimated else 0,
+        'yes_cost': jne.yes_cost if jne.yes_cost else 0,
         'yes_estimated': jne.yes_estimated if jne.yes_estimated else 0,
     }
 
@@ -178,7 +178,7 @@ def serialize_item(item):
 
 
 def serialize_payment(payment):
-    photo_url = settings.HOST + payment.photo.thumbnails.get('size_600x300').url \
+    photo_url = settings.HOST + payment.photo.thumbnails.get('size_400x600').url \
         if payment.photo else None
 
     return {
