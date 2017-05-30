@@ -40,7 +40,7 @@ def check_migration_type():
 def migrate(path=None):
     path = env.SRC_PATH if path is None else path
     with cd(path):
-        sudo("%s manage.py migrate --no-initial-data" % env.PYTHON_BIN)
+        sudo("%s manage.py migrate" % env.PYTHON_BIN)
 
 
 def create_automatic_migration():

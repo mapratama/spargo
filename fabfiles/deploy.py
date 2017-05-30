@@ -123,19 +123,19 @@ def update_project(skip_test="true", target_dir='spargo', init_module='systemd')
 
     # migration_type = check_migration_type()
     # if migration_type == "update_source_then_migrate":
-    #     update_source_code()
-    #     # Update & Reload all before migrating code
-    #     install_front_end_requirements()
-    #     collect_static()
-    #     compress_static()
-    #     copy_email_templates()
-    #     init_module.restart("spargo")
-    #     if target_dir == 'spargo':
-    #         init_module.restart('rqworker')
-    #         init_module.restart('rqworker-elastic')
-    #         with settings(warn_only=True):
-    #             init_module.restart('rqworker2')
-    #     migrate()
+    update_source_code()
+        # Update & Reload all before migrating code
+        # install_front_end_requirements()
+    collect_static()
+        # compress_static()
+        # copy_email_templates()
+        # init_module.restart("spargo")
+        # if target_dir == 'spargo':
+        #     init_module.restart('rqworker')
+        #     init_module.restart('rqworker-elastic')
+        #     with settings(warn_only=True):
+        #         init_module.restart('rqworker2')
+    migrate()
     #     return
     # elif migration_type == "migrate_then_update_source":
     #     # Migrate from temporary first
@@ -143,19 +143,19 @@ def update_project(skip_test="true", target_dir='spargo', init_module='systemd')
     #     #  then normal stuff without migration again
     #     update_source_code()
     # elif migration_type is None:
-    update_source_code()
+    #     update_source_code()
 
-    install_front_end_requirements()
+    # install_front_end_requirements()
     collect_static()
-    compress_static()
-    copy_email_templates()
+    # compress_static()
+    # copy_email_templates()
 
     init_module.restart("spargo")
     if target_dir == 'spargo':
         init_module.restart('rqworker')
-        init_module.restart('rqworker-elastic')
-        with settings(warn_only=True):
-            init_module.restart('rqworker2')
+        # init_module.restart('rqworker-elastic')
+        # with settings(warn_only=True):
+        #     init_module.restart('rqworker2')
 
 
 def update_au_project(skip_test="false"):
