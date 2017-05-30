@@ -67,6 +67,8 @@ INSTALLED_APPS = (
     'spargo.apps.products',
     'spargo.apps.types',
     'spargo.apps.users',
+
+    # 'post_office',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,6 +129,27 @@ THUMBNAILS = {
             ],
             'POST_PROCESSORS': STANDARD_POST_PROCESSORS
         },
+        'size_600x200': {
+            'PROCESSORS': [
+                {'PATH': 'thumbnails.processors.resize', 'width': 600, 'height': 200, 'method': 'fill'},
+                {'PATH': 'thumbnails.processors.crop', 'width': 600, 'height': 200},
+            ],
+            'POST_PROCESSORS': STANDARD_POST_PROCESSORS
+        },
+        'size_600x400': {
+            'PROCESSORS': [
+                {'PATH': 'thumbnails.processors.resize', 'width': 600, 'height': 400, 'method': 'fill'},
+                {'PATH': 'thumbnails.processors.crop', 'width': 600, 'height': 400},
+            ],
+            'POST_PROCESSORS': STANDARD_POST_PROCESSORS
+        },
+        'size_600x600': {
+            'PROCESSORS': [
+                {'PATH': 'thumbnails.processors.resize', 'width': 600, 'height': 600, 'method': 'fill'},
+                {'PATH': 'thumbnails.processors.crop', 'width': 600, 'height': 600},
+            ],
+            'POST_PROCESSORS': STANDARD_POST_PROCESSORS
+        },
         'size_400x600': {
             'PROCESSORS': [
                 {'PATH': 'thumbnails.processors.resize', 'width': 400, 'height': 600, 'method': 'fill'},
@@ -142,6 +165,29 @@ THUMBNAILS = {
         },
     }
 }
+
+EMAIL_TEMPLATES_BASE_DIR = path.join(PROJECT_ROOT, "email_templates")
+
+#  EMAIL SETTINGS
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@salon.co.id'
+EMAIL_HOST_PASSWORD = '6ee4ac2536c9ca7b21d85286394fdc12'
+MAILGUN_API_KEY = 'key-4p1mch9ql479tv6br0m1qr5667m3szg6'
+EMAIL_FOOTER_TEMPLATE = 'emails/footers/default.html'
+
+EMAIL_BACKEND = 'post_office.EmailBackend'
+POST_OFFICE = {
+    'BACKENDS': {
+        'default': 'django.core.mail.backends.smtp.EmailBackend',
+    },
+    'DEFAULT_LOG_LEVEL': 1,
+    'LOG_LEVEL': 1,
+}
+EMAIL_TIMEOUT = 30
+
+DEFAULT_FROM_EMAIL = 'noreply@salon.co.id'
 
 ROOT_URLCONF = 'spargo.urls'
 
@@ -177,7 +223,7 @@ CACHED_AUTH_PREPROCESSOR = 'spargo.apps.users.models.cached_auth_preprocessor'
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'id-ID'
 
 TIME_ZONE = 'Asia/Jakarta'
 

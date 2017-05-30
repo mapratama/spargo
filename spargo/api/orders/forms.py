@@ -173,11 +173,13 @@ class DeliverForm(forms.Form):
     order = forms.ModelChoiceField(
         queryset=Order.objects.filter(status=Order.STATUS.payment_approved)
     )
+    delivery_id = forms.CharField(label='Nomor Resi')
 
     def save(self):
         order = self.cleaned_data['order']
         order.status = Order.STATUS.deliver
-        order.save(update_fields=['status'])
+        order.delivery_id = self.cleaned_data['delivery_id']
+        order.save(update_fields=['status', 'delivery_id'])
 
         send_deliver_notification(order)
 

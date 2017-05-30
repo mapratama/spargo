@@ -15,7 +15,7 @@ def serialize_user(user):
 
 
 def serialize_banner(banner):
-    photo_url = settings.HOST + banner.photo.thumbnails.get('size_600x300').url \
+    photo_url = settings.HOST + banner.photo.thumbnails.get('size_600x600').url \
         if banner.photo else None
 
     return {
@@ -63,7 +63,7 @@ def serialize_bank(bank):
 
 
 def serialize_type(type):
-    photo_url = settings.HOST + type.photo.thumbnails.get('size_600x300').url \
+    photo_url = settings.HOST + type.photo.thumbnails.get('size_600x200').url \
         if type.photo else None
 
     banner_url = settings.HOST + type.banner.thumbnails.get('size_600x300').url \
@@ -80,18 +80,19 @@ def serialize_type(type):
 
 
 def serialize_photo(photo):
-    photo_url = settings.HOST + photo.photo.thumbnails.get('size_600x300').url \
+    photo_url = settings.HOST + photo.photo.thumbnails.get('size_600x400').url \
         if photo.photo else None
 
     return {
         'id': photo.id,
+        'name': photo.name,
         'photo_url': photo_url,
         'is_active': photo.is_active,
     }
 
 
 def serialize_category(category):
-    photo_url = settings.HOST + category.photo.thumbnails.get('size_200').url \
+    photo_url = settings.HOST + category.photo.thumbnails.get('size_400').url \
         if category.photo else None
 
     banner_url = settings.HOST + category.banner.thumbnails.get('size_600x300').url \
@@ -109,7 +110,7 @@ def serialize_category(category):
 
 
 def serialize_model(model):
-    photo_url = settings.HOST + model.photo.thumbnails.get('size_600x300').url \
+    photo_url = settings.HOST + model.photo.thumbnails.get('size_600x200').url \
         if model.photo else None
 
     return {
@@ -156,6 +157,7 @@ def serialize_order(order):
         'with_installation': order.with_installation,
         'installation_fee': order.installation_fee,
         'delivery_fee': order.delivery_fee,
+        'delivery_id': order.delivery_id if order.delivery_id else None,
         'address': order.address,
         'extra_data': order.extra_data if order.extra_data else None,
         'lat': order.lat if order.lat else None,

@@ -15,6 +15,7 @@ class Photo(models.Model):
 
     photo = ImageField(upload_to=FilenameGenerator(prefix='product-photo'),
                        default='', blank=True)
+    name = models.CharField(max_length=50)
     is_active = models.BooleanField('active', default=True)
     objects = models.Manager.from_queryset(PhotoQuerySet)()
 

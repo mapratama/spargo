@@ -5,12 +5,12 @@ from spargo.core.utils import force_login
 from spargo.core.serializers import serialize_order, serialize_user
 
 from django.contrib.auth import login, logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
 from rest_framework import status
 from rest_framework.response import Response
 
-from .forms import APIRegistrationForm
+from .forms import APIRegistrationForm, PasswordResetForm
 from .utils import success_response
 
 
@@ -68,3 +68,24 @@ class NotificationUpdate(SessionAPIView):
         user.save()
 
         return Response({'status': 'ok'}, status=status.HTTP_200_OK)
+
+
+class ChangePassword(SessionAPIView):
+
+    def post(self, request):
+        form = PasswordChangeForm(data=request.data, user=request.user)
+        if form.is_valid():
+            form.save()
+            return Response({'status': 'ok'}, status=status.HTTP_200_OK)
+        return ErrorResponse(form=form)
+
+
+class PasswordReset(SpargoAPIView):
+
+    def post(self, request):
+        form = PasswordResetForm(request.data)
+        if form.is_valid():
+            form.save()
+            return Response({'status': 'ok'}, status=status.HTTP_200_OK)
+
+        return ErrorResponse(form=form)

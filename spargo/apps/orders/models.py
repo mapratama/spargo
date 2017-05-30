@@ -11,6 +11,14 @@ from model_utils import Choices
 from model_utils.fields import AutoCreatedField
 
 
+class OrderQuerySet(models.query.QuerySet):
+
+    def is_active(self):
+        return self.exclude(
+            status__in=[Order.STATUS.completed, Order.STATUS.canceled]
+        )
+
+
 class Order(models.Model):
 
     user = models.ForeignKey('users.User', related_name='orders')
@@ -43,12 +51,14 @@ class Order(models.Model):
     with_installation = models.BooleanField(default=True)
     installation_fee = models.FloatField(validators=[MinValueValidator(0)], default=0)
     delivery_fee = models.FloatField(validators=[MinValueValidator(0)], default=0)
+    delivery_id = models.CharField(max_length=30, blank=True, null=True)
     address = models.TextField()
     extra_data = models.CharField(max_length=50, blank=True, null=True)
     lat = models.FloatField(blank=True, null=True)
     long = models.FloatField(blank=True, null=True)
     notes = models.TextField(default='', blank=True)
     created = AutoCreatedField()
+    objects = models.Manager.from_queryset(OrderQuerySet)()
 
     def __unicode__(self):
         return 'Order #%s' % (self.invoice_number)

@@ -67,6 +67,13 @@ class Create(SessionAPIView):
         return ErrorResponse(form=order_form)
 
 
+class Index(SessionAPIView):
+    def get(self, request):
+        orders = request.user.orders.is_active()
+        response = [serialize_order(order) for order in orders]
+        return Response(response, status=status.HTTP_200_OK)
+
+
 class Dashboard(SessionAPIView):
     def get(self, request):
         user = request.user

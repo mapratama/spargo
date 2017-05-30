@@ -2,10 +2,11 @@ from django.conf.urls import patterns, url
 
 from .views import (Create, Dashboard, Details, Preview, SentOffering,
                     AcceptOffering, PaymentChecked, Deliver, Completed,
-                    Canceled)
+                    Canceled, Index)
 
 
 urlpatterns = patterns('',
+    url(r'^$', Index.as_view(), name='index'),
     url(r'^preview$', Preview.as_view(), name='preview'),
     url(r'^create$', Create.as_view(), name='create'),
     url(r'^(?P<id>\d+)$', Details.as_view(), name='details'),

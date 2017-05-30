@@ -2,10 +2,19 @@ from dateutil import parser
 from dateutil.relativedelta import relativedelta
 
 from django import forms
+# from django.conf import settings
 from django.utils import timezone
+from django.utils.crypto import get_random_string
+
+# from django.template.loader import render_to_string
+
+# from post_office import mail
+# from post_office.models import PRIORITY
 
 from spargo.apps.users.models import User
 from spargo.core.fields import MobileNumberField
+
+# import django_rq
 
 
 class APIRegistrationForm(forms.Form):
@@ -61,3 +70,39 @@ class APIRegistrationForm(forms.Form):
         user.save()
 
         return user
+
+
+class PasswordResetForm(forms.Form):
+
+    email = forms.EmailField()
+
+    def clean_email(self):
+        email = self.cleaned_data['email'].lower().strip()
+        self.user = User.objects.filter(email=email, is_active=True).first()
+        if not self.user:
+            raise forms.ValidationError("Email belum terdaftar")
+        return email
+
+    def save(self, *args, **kwargs):
+        new_password = get_random_string(length=32)
+        self.user.set_password(new_password)
+        self.user.save()
+
+        print new_password
+
+        # context = {
+        #     'email': self.user.email,
+        #     'password': new_password,
+        # }
+
+        # kwargs = {
+        #     "recipients": [self.user.email],
+        #     "subject": 'Permintaan perubahan password aplikasi Spargo',
+        #     "message": render_to_string('accounts/password_reset.md', context),
+        #     "priority": PRIORITY.now
+        # }
+
+        # if settings.TEST:
+        #     mail.send(**kwargs)
+        # else:
+        #     django_rq.enqueue(mail.send, **kwargs)
