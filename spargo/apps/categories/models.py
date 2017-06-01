@@ -17,8 +17,6 @@ class Category(models.Model):
     description = models.TextField(blank=True, null=True)
     photo = ImageField(upload_to=FilenameGenerator(prefix='category-photo'),
                        default='', blank=True)
-    banner = ImageField(upload_to=FilenameGenerator(prefix='category-banner'),
-                        default='', blank=True)
     is_active = models.BooleanField('active', default=True)
     model = models.ManyToManyField('models.Model')
     objects = models.Manager.from_queryset(CategoryQuerySet)()

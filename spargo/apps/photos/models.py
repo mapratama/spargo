@@ -20,4 +20,4 @@ class Photo(models.Model):
     objects = models.Manager.from_queryset(PhotoQuerySet)()
 
     def __unicode__(self):
-        return str(self.id)
+        return str(self.name)

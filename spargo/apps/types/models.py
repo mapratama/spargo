@@ -17,8 +17,6 @@ class Type(models.Model):
     description = models.TextField(blank=True, null=True)
     photo = ImageField(upload_to=FilenameGenerator(prefix='type-photo'),
                        default='', blank=True)
-    banner = ImageField(upload_to=FilenameGenerator(prefix='type-banner'),
-                        default='', blank=True)
     is_active = models.BooleanField('active', default=True)
     objects = models.Manager.from_queryset(TypeQuerySet)()
 
