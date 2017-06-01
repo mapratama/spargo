@@ -66,14 +66,10 @@ def serialize_type(type):
     photo_url = settings.HOST + type.photo.thumbnails.get('size_600x200').url \
         if type.photo else None
 
-    banner_url = settings.HOST + type.banner.thumbnails.get('size_600x300').url \
-        if type.banner else None
-
     return {
         'id': type.id,
         'name': type.name,
         'decription': type.decription if type.description else None,
-        'banner_url': banner_url,
         'photo_url': photo_url,
         'is_active': type.is_active,
     }
@@ -95,15 +91,11 @@ def serialize_category(category):
     photo_url = settings.HOST + category.photo.thumbnails.get('size_400').url \
         if category.photo else None
 
-    banner_url = settings.HOST + category.banner.thumbnails.get('size_600x300').url \
-        if category.banner else None
-
     return {
         'id': category.id,
         'name': category.name,
         'models': [serialize_model(model) for model in category.model.all()],
         'decription': category.decription if category.description else None,
-        'banner_url': banner_url,
         'photo_url': photo_url,
         'is_active': category.is_active,
     }
