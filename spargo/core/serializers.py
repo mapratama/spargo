@@ -63,7 +63,7 @@ def serialize_bank(bank):
 
 
 def serialize_type(type):
-    photo_url = settings.HOST + type.photo.thumbnails.get('size_600x200').url \
+    photo_url = settings.HOST + type.photo.thumbnails.get('size_600x300').url \
         if type.photo else None
 
     return {
@@ -76,7 +76,7 @@ def serialize_type(type):
 
 
 def serialize_photo(photo):
-    photo_url = settings.HOST + photo.photo.thumbnails.get('size_600x400').url \
+    photo_url = settings.HOST + photo.photo.thumbnails.get('size_600x300').url \
         if photo.photo else None
 
     return {
@@ -102,7 +102,7 @@ def serialize_category(category):
 
 
 def serialize_model(model):
-    photo_url = settings.HOST + model.photo.thumbnails.get('size_600x200').url \
+    photo_url = settings.HOST + model.photo.thumbnails.get('size_600x300').url \
         if model.photo else None
 
     return {
