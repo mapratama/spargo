@@ -161,7 +161,9 @@ class PaymentCheckedForm(forms.Form):
         order = payment.order
         if status == Payment.STATUS.accepted:
             order.status = Order.STATUS.payment_approved
-            order.save(update_fields=['status'])
+        else:
+            order.status = Order.STATUS.created
+        order.save(update_fields=['status'])
 
         send_payment_checked_notification(payment)
 
