@@ -108,7 +108,7 @@ def serialize_model(model):
     return {
         'id': model.id,
         'name': model.name,
-        'decription': model.decription if model.description else None,
+        'description': model.description if model.description else None,
         'photo_url': photo_url,
         'is_active': model.is_active,
     }
