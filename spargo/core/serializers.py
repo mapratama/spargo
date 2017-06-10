@@ -69,7 +69,7 @@ def serialize_type(type):
     return {
         'id': type.id,
         'name': type.name,
-        'decription': type.decription if type.description else None,
+        'description': type.description if type.description else None,
         'photo_url': photo_url,
         'is_active': type.is_active,
     }
@@ -95,7 +95,7 @@ def serialize_category(category):
         'id': category.id,
         'name': category.name,
         'models': [serialize_model(model) for model in category.model.all()],
-        'decription': category.decription if category.description else None,
+        'description': category.description if category.description else None,
         'photo_url': photo_url,
         'is_active': category.is_active,
     }
