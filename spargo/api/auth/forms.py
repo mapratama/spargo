@@ -88,8 +88,6 @@ class PasswordResetForm(forms.Form):
         self.user.set_password(new_password)
         self.user.save()
 
-        print new_password
-
         # context = {
         #     'email': self.user.email,
         #     'password': new_password,

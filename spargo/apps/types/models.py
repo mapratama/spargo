@@ -22,3 +22,17 @@ class Type(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class SubType(models.Model):
+
+    type = models.ForeignKey(Type)
+    name = models.CharField(max_length=50)
+    description = models.TextField(blank=True, null=True)
+    photo = ImageField(upload_to=FilenameGenerator(prefix='sub-type-photo'),
+                       default='', blank=True)
+    is_active = models.BooleanField('active', default=True)
+    objects = models.Manager.from_queryset(TypeQuerySet)()
+
+    def __unicode__(self):
+        return self.name
