@@ -166,29 +166,6 @@ THUMBNAILS = {
     }
 }
 
-EMAIL_TEMPLATES_BASE_DIR = path.join(PROJECT_ROOT, "email_templates")
-
-#  EMAIL SETTINGS
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_HOST_USER = 'postmaster@salon.co.id'
-EMAIL_HOST_PASSWORD = '6ee4ac2536c9ca7b21d85286394fdc12'
-MAILGUN_API_KEY = 'key-4p1mch9ql479tv6br0m1qr5667m3szg6'
-EMAIL_FOOTER_TEMPLATE = 'emails/footers/default.html'
-
-EMAIL_BACKEND = 'post_office.EmailBackend'
-POST_OFFICE = {
-    'BACKENDS': {
-        'default': 'django.core.mail.backends.smtp.EmailBackend',
-    },
-    'DEFAULT_LOG_LEVEL': 1,
-    'LOG_LEVEL': 1,
-}
-EMAIL_TIMEOUT = 30
-
-DEFAULT_FROM_EMAIL = 'noreply@salon.co.id'
-
 ROOT_URLCONF = 'spargo.urls'
 
 WSGI_APPLICATION = 'spargo.wsgi.application'
