@@ -62,6 +62,20 @@ def serialize_bank(bank):
     }
 
 
+def serialize_subtype(subtype):
+    photo_url = settings.HOST + subtype.photo.thumbnails.get('size_600x300').url \
+        if subtype.photo else None
+
+    return {
+        'id': subtype.id,
+        'name': subtype.name,
+        'description': subtype.description if subtype.description else None,
+        'photo_url': photo_url,
+        'is_active': subtype.is_active,
+        'type': serialize_type(subtype.type)
+    }
+
+
 def serialize_type(type):
     photo_url = settings.HOST + type.photo.thumbnails.get('size_600x300').url \
         if type.photo else None
@@ -119,7 +133,7 @@ def serialize_product(product):
     return {
         'id': product.id,
         'name': product.name,
-        'type': serialize_type(product.type_product),
+        'subtype': serialize_subtype(product.subtype_product),
         'models': [serialize_model(model) for model in product.model.all()],
         'photos': [serialize_photo(photo) for photo in product.photos.is_active()],
         'colour': product.colour if product.colour else '-',
