@@ -213,7 +213,7 @@ def setup_os():
 def update_git_repo():
     """ Creates or update user's git repository for this project """
     if not exists('%s%s' % (env.HOME_PATH, env.PROJECT_NAME)):
-        git_cmd = 'git clone git@github.com:mapratama/spargo.git {}'.format(env.SRC_PATH)
+        git_cmd = 'git clone git@bitbucket.org:mapratama/spargo.git {}'.format(env.SRC_PATH)
         print """Your git repository for this project doesn't exist.
                  Now running "%s" in %s.""" % (git_cmd, env.HOME_PATH)
         with settings(warn_only=True):
@@ -245,7 +245,7 @@ def update_source_code(path=None):
         if not exists(env.DEPLOYMENT_KEY, use_sudo=True):
             create_deployment_key()
 
-        git_cmd = 'git clone git@github.com:mapratama/spargo.git {}'.format(path)
+        git_cmd = 'git clone git@bitbucket.org:mapratama/spargo.git {}'.format(path)
         require.files.directory(env.PROJECT_PATH, use_sudo=True)
         sudo('chown -R www-data {0}'.format(env.PROJECT_PATH))
         with cd(env.PROJECT_PATH):
