@@ -90,7 +90,7 @@ def serialize_type(type):
 
 
 def serialize_photo(photo):
-    photo_url = settings.HOST + photo.photo.thumbnails.get('size_600x300').url \
+    photo_url = settings.HOST + photo.photo.thumbnails.get('size_600x400').url \
         if photo.photo else None
 
     return {
