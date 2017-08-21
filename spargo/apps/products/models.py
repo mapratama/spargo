@@ -16,7 +16,7 @@ class Product(models.Model):
     type_product = models.ForeignKey('types.Type')
     subtype_product = models.ForeignKey('types.SubType', blank=True, null=True)
     model = models.ManyToManyField('models.Model')
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     colour = models.CharField(max_length=50, blank=True, null=True)
     weight = models.FloatField(validators=[MinValueValidator(0)])
     dimension = models.CharField('Ukuran', max_length=50, blank=True, null=True)
