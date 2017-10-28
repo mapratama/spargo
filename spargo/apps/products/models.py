@@ -14,7 +14,7 @@ class ProductQuerySet(models.query.QuerySet):
 class Product(models.Model):
 
     type_product = models.ForeignKey('types.Type')
-    subtype_product = models.ForeignKey('types.SubType', blank=True, null=True)
+    subtype_product = models.ForeignKey('types.SubType')
     model = models.ManyToManyField('models.Model')
     name = models.CharField(max_length=50, unique=True)
     colour = models.CharField(max_length=50, blank=True, null=True)
